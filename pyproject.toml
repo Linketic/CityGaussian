@@ -9,6 +9,9 @@ include = ["internal*", "utils*"]
 name = "gaussian-splatting-lightning"
 dynamic = ["version"]
 requires-python = ">=3.8"
+dependencies = [
+    "setuptools>=61.0,<70",
+]
 
 [project.scripts]
 gs-fit = "internal.entrypoints.gspl:cli_fit"
