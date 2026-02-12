@@ -10,7 +10,7 @@ CityGaussian is a large-scale scene reconstruction system using 3D/2D Gaussian S
 
 **Important**: This project requires CUDA-compiled submodules. For CUDA 12.x (GTX 40-series and newer), the submodules need `<cstdint>` includes in header files.
 
-**Always use `uv` for package management. Never use `pip` directly.**
+**Always use `uv` for package management. Never use `pip` or `pip install` directly - always use `uv add` or `uv pip install`.**
 
 ```bash
 # Create environment
@@ -77,6 +77,24 @@ python -m unittest discover tests -v
 python -m unittest tests.vanilla_gaussian_model_test -v
 ```
 
+### Quick Installation Test
+```bash
+# Download test dataset (Tanks & Temples truck scene, ~180MB)
+wget "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip" -O data/tandt.zip
+unzip data/tandt.zip -d data/
+ln -s images data/tandt/truck/images_2
+
+# Train for 3000 steps (~2 min on RTX 4080)
+python main.py fit --data.path data/tandt/truck \
+    --data.parser.class_path Colmap \
+    --data.parser.init_args.down_sample_factor 2 \
+    --data.parser.init_args.down_sample_rounding_mode ceil \
+    --trainer.max_steps 3000 -n test_truck
+
+# View result
+gs-viewer outputs/test_truck/checkpoints/*.ckpt --port 8080
+```
+
 ## Architecture
 
 ### Entry Points
@@ -126,3 +144,7 @@ The following commands are pre-approved and can be run without confirmation:
 - `uv add ...` - Installing packages
 - `uv pip install ... --no-build-isolation` - Building CUDA extensions
 - `gs-viewer ...` - Web viewer
+- `wget ...` - Download files
+- `curl ...` - Download files
+- `gdown ...` - Download from Google Drive
+- `unzip ...` - Extract archives
