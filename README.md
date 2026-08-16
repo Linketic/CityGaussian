@@ -95,7 +95,7 @@ Note for street view, the F1-Score is lower than that reported in paper, since w
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Linketic/CityGaussian&type=Date)](https://www.star-history.com/#Linketic/CityGaussian&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Linketic/CityGaussian&type=Date)](https://star-history.dera.page/#Linketic/CityGaussian&Date)
 
 ## 📄 License
 
